@@ -7,7 +7,7 @@ const asyncMiddleware = fn =>
       .catch(next);
   };
 
-const { getById } = require('./cacheController')
+const { getById, create, getAll } = require('./cacheController')
 const helpers = require('./helpers')
 const CacheService = require('./cacheService')
 const model = require('./cacheModel')
@@ -16,6 +16,8 @@ const service = new CacheService({model, helpers})
 const checkMiddleware = require('./cacheMiddleware').checkLimit({model, settings})
 
 router.get('/:id', asyncMiddleware(checkMiddleware), getById({service}))
+router.get('/', getAll({service}))
+router.post('/', asyncMiddleware(checkMiddleware), create({service}))
 
 
 module.exports = router

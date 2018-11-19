@@ -17,4 +17,12 @@ module.exports = class CacheService {
 
     return result
   }
+
+  async create(data) {
+    await this.model.create(data)
+  }
+
+  async getAll() {
+    return await this.model.find({})
+  }
 }
