@@ -7,7 +7,7 @@ const asyncMiddleware = fn =>
       .catch(next);
   };
 
-const { getById, create, getAll, deleteById, deleteAll } = require('./cacheController')
+const { getById, create, getAll, deleteById, deleteAll, update } = require('./cacheController')
 const helpers = require('./helpers')
 const CacheService = require('./cacheService')
 const model = require('./cacheModel')
@@ -19,6 +19,7 @@ router.get('/:id', asyncMiddleware(checkMiddleware), getById({service}))
 router.get('/', getAll({service}))
 router.delete('/:id', deleteById({service}))
 router.delete('/', deleteAll({service}))
+router.put('/:id', update({service}))
 router.post('/', asyncMiddleware(checkMiddleware), create({service}))
 
 

@@ -27,5 +27,14 @@ module.exports.deleteById = ({ service }) => async (req, res) => {
   }
 }
 
+module.exports.update = ({ service }) => async (req, res) => {
+  try {
+    const entry = await service.update(req.params.id, req.body)
+    res.status(200).send(entry)
+  } catch (error) {
+    res.status(404).send()
+  }
+}
+
 
 

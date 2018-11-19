@@ -33,4 +33,8 @@ module.exports = class CacheService {
   async deleteById(id) {
     await this.model.deleteOne({_id: id}).orFail()
   }
+
+  async update(id, data) {
+    await this.model.updateOne({_id: id}, data).orFail()
+  }
 }

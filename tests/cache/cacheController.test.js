@@ -53,6 +53,22 @@ describe('Cache controller', () => {
     expect(list.length).toBe(1)
   })
 
+  test('PUT /cache/:id should return 200 when the entry is created', async () => {
+    const { _id } = await CacheModel.create({data: 'bla'})
+    const newData = {data: 'bla1'}
+    const { status } = await request(app).put(`/cache/${_id}`).send(newData)
+    expect(status).toBe(200)
+    const entry = await CacheModel.findById(_id)
+    expect(entry.data).toEqual(newData.data)
+  })
+
+  test('PUT /cache/:id should return 404 when the entry is not found', async () => {
+    const newData = {data: 'bla1'}
+    const _id = 'asdas'
+    const { status } = await request(app).put(`/cache/${_id}`).send(newData)
+    expect(status).toBe(404)
+  })
+
   afterEach(async () => {
     await CacheModel.deleteMany({})
   })

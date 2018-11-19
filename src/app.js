@@ -6,7 +6,7 @@ const { setUp } = require('../config/db')
 
 setUp()
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/cache', cacheRoutes)
