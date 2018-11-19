@@ -1,0 +1,27 @@
+{
+  "name": "cache-api",
+  "version": "1.0.0",
+  "description": "A cache implementation  using express.js and mongodb",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/betomoretti/cache-api.git"
+  },
+  "keywords": [
+    "cache",
+    "express.js",
+    "mongodb"
+  ],
+  "author": "Mariano Moretti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/betomoretti/cache-api/issues"
+  },
+  "homepage": "https://github.com/betomoretti/cache-api#readme"
+}
