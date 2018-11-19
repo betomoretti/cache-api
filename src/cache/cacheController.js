@@ -13,6 +13,11 @@ module.exports.create = ({ service }) => async (req, res) => {
   res.status(200).send(entry)
 }
 
+module.exports.deleteAll = ({ service }) => async (req, res) => {
+  await service.deleteAll()
+  res.status(200).send()
+}
+
 module.exports.deleteById = ({ service }) => async (req, res) => {
   try {
     const entry = await service.deleteById(req.params.id)

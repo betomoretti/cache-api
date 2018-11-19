@@ -26,6 +26,10 @@ module.exports = class CacheService {
     return await this.model.find({})
   }
 
+  async deleteAll() {
+    return await this.model.deleteMany({})
+  }
+
   async deleteById(id) {
     await this.model.deleteOne({_id: id}).orFail()
   }

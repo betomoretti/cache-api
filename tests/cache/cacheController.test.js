@@ -36,8 +36,13 @@ describe('Cache controller', () => {
 
   test('DELETE /cache/:id should return 404 when is not found', async () => {
     const _id = 'asdasd'
-    const { status, body } = await request(app).delete(`/cache/${_id}`)
+    const { status } = await request(app).delete(`/cache/${_id}`)
     expect(status).toBe(404)
+  })
+
+  test('DELETE /cache should return 200 when delete all', async () => {
+    const { status } = await request(app).delete(`/cache`)
+    expect(status).toBe(200)
   })
 
   test('POST /cache should return 200 when the entry is created', async () => {
