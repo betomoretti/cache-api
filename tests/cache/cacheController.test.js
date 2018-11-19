@@ -28,12 +28,24 @@ describe('Cache controller', () => {
     expect(body).toEqual([])
   })
 
+  test('DELETE /cache/:id should return 200 when is found and deleted', async () => {
+    const { _id } = await CacheModel.create({data: 'bla'})
+    const { status, body } = await request(app).delete(`/cache/${_id}`)
+    expect(status).toBe(200)
+  })
+
+  test('DELETE /cache/:id should return 404 when is not found', async () => {
+    const _id = 'asdasd'
+    const { status, body } = await request(app).delete(`/cache/${_id}`)
+    expect(status).toBe(404)
+  })
+
   test('POST /cache should return 200 when the entry is created', async () => {
     const data = {data: 'asdasd2'}
     const { status } = await request(app).post(`/cache`).send(data)
     expect(status).toBe(200)
-    const { body } = await request(app).get('/cache')
-    expect(body.length).toBe(1)
+    const list = await CacheModel.find({})
+    expect(list.length).toBe(1)
   })
 
   afterEach(async () => {

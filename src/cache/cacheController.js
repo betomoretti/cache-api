@@ -13,5 +13,14 @@ module.exports.create = ({ service }) => async (req, res) => {
   res.status(200).send(entry)
 }
 
+module.exports.deleteById = ({ service }) => async (req, res) => {
+  try {
+    const entry = await service.deleteById(req.params.id)
+    res.status(200).send(entry)
+  } catch (error) {
+    res.status(404).send()
+  }
+}
+
 
 
