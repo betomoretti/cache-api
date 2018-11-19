@@ -15,6 +15,13 @@ describe('Cache controller', () => {
     expect(returnedId).toEqual(_id.toString())
   })
 
+  test('GET /cache should return 200 when the entry does not exists', async () => {
+    const { _id } = 'asdasd2'
+    const { status, body: { _id: returnedId } } = await request(app).get(`/cache/${_id}`)
+    expect(status).toBe(200)
+    expect(returnedId).toBeTruthy()
+  })
+
   afterEach(async () => {
     await CacheModel.deleteMany({})
   })

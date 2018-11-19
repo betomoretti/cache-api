@@ -4,8 +4,15 @@ module.exports = class CacheService {
   }
 
   async getById(id) {
-    const result = await this.model.findById(id)
-    if (result) console.info('Cache HIT')
+    let result;
+    try {
+      result = await this.model.findById(id).orFail()
+      console.info('Cache HIT')
+    } catch (e) {
+      console.info('Cache MISS')
+      result = await this.model.create({data: "bla"})
+    }
+
     return result
   }
 }
