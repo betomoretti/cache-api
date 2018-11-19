@@ -7,7 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "npx jest"
+    "start": "node index.js",
+    "test": "npx jest",
+    "test:watch": "npx jest --runInBand --watchAll"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,11 @@
   "bugs": {
     "url": "https://github.com/betomoretti/cache-api/issues"
   },
-  "homepage": "https://github.com/betomoretti/cache-api#readme"
+  "homepage": "https://github.com/betomoretti/cache-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jest": "^23.6.0",
+    "supertest": "^3.3.0"
+  }
 }
