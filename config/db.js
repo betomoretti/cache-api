@@ -1,12 +1,16 @@
 const mongoose = require('mongoose')
 
 module.exports.setUp = () => {
-  mongoose.connect('mongodb://localhost:27017/cache')
+  if (process.env.NODE_ENV !== 'test') {
+    mongoose.connect('mongodb://localhost:27017/cache')
 
-  mongoose.connection.on('error', console.error.bind(console, 'connection error:'))
-  mongoose.connection.once('open', function() {
-    console.log('Connected to db...')
-  });
+    mongoose.connection.on('error', console.error.bind(console, 'connection error:'))
+    mongoose.connection.once('open', function() {
+      console.log('Connected to db...')
+    });
+  }
+
+  return mongoose
 }
 
 module.exports.setUpForTest = () => {
