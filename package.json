@@ -31,6 +31,7 @@
     "express": "^4.16.4",
     "jest": "^23.6.0",
     "mongoose": "^5.3.12",
+    "movie-quotes": "^1.0.0",
     "supertest": "^3.3.0"
   }
 }

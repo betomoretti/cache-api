@@ -1,6 +1,7 @@
 module.exports = class CacheService {
-  constructor ({model}) {
+  constructor ({model, helpers}) {
     this.model = model
+    this.helpers = helpers
   }
 
   async getById(id) {
@@ -10,7 +11,8 @@ module.exports = class CacheService {
       console.info('Cache HIT')
     } catch (e) {
       console.info('Cache MISS')
-      result = await this.model.create({data: "bla"})
+      const generatedData = this.helpers.generateRandomData()
+      result = await this.model.create(generatedData)
     }
 
     return result
