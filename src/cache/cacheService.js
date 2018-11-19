@@ -4,7 +4,7 @@ module.exports = class CacheService {
   }
 
   async getById(id) {
-    const result = await this.model.find({id})
+    const result = await this.model.findOne({_id: id})
     if (result) console.info('Cache HIT')
     return result
   }
