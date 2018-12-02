@@ -5,7 +5,10 @@ describe('Tests for cache service', () => {
     const expectedResult = {data: 'random data'}
     const expectedId = 1
     const orFailMock = jest.fn(async () => await expectedResult)
-    const mockModel = {findById: jest.fn((filter) => ({orFail: orFailMock}))}
+    const mockModel = {
+      findById: jest.fn((filter) => ({orFail: orFailMock}))
+    }
+    
     const service = new CacheService({ model: mockModel })
     const consoleInfoSpy = jest.spyOn(console, 'info')
 
@@ -23,10 +26,13 @@ describe('Tests for cache service', () => {
   test('get method should return a new entry when does not exists', async () => {
     const expectedId = 1
     const expectedResult = {}
+    const expectedRandomData = {data: "blabla"}
     const helperMock = {
-      generateRandomData: jest.fn(() => {data: "blabla"})
+      generateRandomData: jest.fn(() => expectedRandomData)
     }
-    const orFailMock = jest.fn(async () => await expectedResult).mockRejectedValueOnce(new Error('Async error'))
+    const orFailMock = jest
+      .fn(async () => await expectedResult)
+      .mockRejectedValueOnce(new Error('Async error'))
     const mockModel = {
       create: jest.fn(async () => await expectedResult),
       findById: () => {
@@ -42,8 +48,8 @@ describe('Tests for cache service', () => {
     const result = await service.getById(expectedId)
 
     expect(consoleInfoSpy).toHaveBeenCalled()
-    expect(mockModel.create).toBeCalled()
     expect(helperMock.generateRandomData).toBeCalled()
+    expect(mockModel.create).toBeCalledWith(expectedRandomData)
     expect(result).toEqual(expectedResult)
 
     consoleInfoSpy.mockRestore()

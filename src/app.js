@@ -4,8 +4,6 @@ const app = express()
 const cacheRoutes = require('./cache')
 const { setUp } = require('../config/db')
 
-setUp()
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -15,4 +13,6 @@ app.get('/health', (req, res) => {
   res.status(200).send('')
 })
 
-module.exports = app
+module.exports.app = app
+
+module.exports.connectDB = setUp

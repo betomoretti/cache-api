@@ -1,3 +1,8 @@
-const app = require('./src/app')
+const { app, connectDB } = require('./src/app')
 
-app.listen(3000, () => console.log('Runinng on 3000...'))
+connectDB()
+  .then(() => {
+    
+    app.listen(3000, () => console.log('Runinng on 3000...'))
+  })
+
