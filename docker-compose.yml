@@ -12,13 +12,16 @@ services:
   api:
     image: node:10-alpine
     working_dir: /home/app
-    command: npm start
+    command: npm run start:compose
     volumes:
       - ./:/home/app
     ports:
       - "3000:3000"
+      - "9229:9229"
     depends_on:
       - mongo
+    environment:
+      - DB_HOST=mongo
   mongo:
     image: mongo
     ports:

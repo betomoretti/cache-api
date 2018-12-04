@@ -7,7 +7,8 @@ module.exports = class CacheService {
   async getById(id) {
     let result;
     try {
-      result = await this.model.findById(id).orFail()
+      // if not result throw error
+      result = await this.model.findById(id)
       console.info('Cache HIT')
     } catch (e) {
       console.info('Cache MISS')

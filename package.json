@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "DB_HOST=localhost node index.js",
+    "start:compose": "nodemon --inspect=0.0.0.0:9229 index.js",
     "test": "npx jest",
     "test:watch": "npx jest --runInBand --watchAll"
   },
@@ -32,6 +33,7 @@
     "jest": "^23.6.0",
     "mongoose": "^5.3.12",
     "movie-quotes": "^1.0.0",
+    "nodemon": "^1.18.7",
     "supertest": "^3.3.0"
   }
 }

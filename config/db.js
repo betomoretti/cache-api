@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 module.exports.setUp = async () => {
   if (process.env.NODE_ENV !== 'test') {
     try {
-      await mongoose.connect('mongodb://mongo:27017/cache')
+      await mongoose.connect(`mongodb://${process.env.DB_HOST}:27017/cache`)
       mongoose.connection.once('open', function() {
         console.log('Connected to db...')
       });
